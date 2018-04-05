@@ -5,13 +5,14 @@ const axios = require("axios");
 
 express()
   .use(express.static(path.join(__dirname, "public")))
+  .set("view engine", "pug")
   .set("views", path.join(__dirname, "views"))
+
   .get("/", (req, res) => {
     axios
       .get("https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/all.json")
       .then(response => {
-        console.log(response);
+        res.render("index", { persos: response.data });
       });
-    res.sendFile("/index.html", { root: __dirname });
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
