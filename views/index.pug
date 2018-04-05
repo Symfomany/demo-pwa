@@ -3,6 +3,5 @@ extends layout
 block content
     ul.collection
       each perso in persos
-        li.collection-item=perso.name
-          a.secondary-content(onClick=`see(${perso.id})`)
-            i.material-icons send
+        a.secondary-content(onClick=`see(${perso.id})`)
+          li.collection-item=perso.name
